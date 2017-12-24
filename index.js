@@ -194,6 +194,20 @@ function isSameTree(treeNodeOne, treeNodeTwo){
   return isSame;
 }
 
+
+function levelOrderTraversal(treeNodeOne, levelArray = [], depth = 0){
+  if(treeNodeOne !== undefined){
+    if(levelArray[depth] === undefined){
+      levelArray[depth] = [];
+    }
+    levelArray[depth].push(treeNodeOne.value);
+    depth++;
+    levelOrderTraversal(treeNodeOne.left, levelArray, depth);
+    levelOrderTraversal(treeNodeOne.right, levelArray, depth);
+  }
+  return levelArray;
+}
+
 //let tree = build([5, 8, 3, 1, 2, 4]);
 let tree = build([3, 2, 4, 1]);
 let tree2 = build([3, 2, 4, 1]);
@@ -212,6 +226,8 @@ let tree2 = build([3, 2, 4, 1]);
 //console.log(mirror(tree));
 
 //console.log(doubleTree(tree));
-console.log(isSameTree(tree, tree2));
+//console.log(isSameTree(tree, tree2));
+let arr = [];
+console.log(levelOrderTraversal(tree, arr));
 console.log("done");
 process.exit();
